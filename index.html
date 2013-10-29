@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1024" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>Kuitit datana</title>
+  <title>Kuittiarkisto</title>
   <link href="http://fonts.googleapis.com/css?family=Karla:400,700,400italic" rel="stylesheet" type="text/css" />
   <style>
  body {
@@ -184,14 +184,14 @@
  </head>
  <body class="impress-not-supported">
   <div id="impress">
-   <h1 class="step" data-x="0" data-y="-800" data-scale="4">Kuitit datana</h1>
+   <h1 class="step" data-x="0" data-y="-800" data-scale="4">Kuittiarkisto</h1>
    <section class="step top left" data-x="-1500" data-y="-1000">
     <h1>Kuitit aina tallessa</h1>
     <div>
      <p>Sähköiset kuitit voisi tallentaa kuittiarkistoon, josta niiden tietoja voisi hakea.
       <q>Saappaat ovatkin liian pienet Jani-Petterille. Olikohan niillä palautusoikeutta?</q>
-      <q>Onko digikameran takuu vielä voimassa? Mihin pitikään olla yhteydessä
-      vikatilanteessa?</q></p>
+      <q>Onko digikameran takuu vielä voimassa? Mihin pitikään olla yhteydessä vikatilanteessa?</q>
+     </p>
 	 <p>Sähköisiä kuittitietoja olisi helppo käyttää sähköisissä asiointiprosesseissa.
       <q>Pitäisi tehdä matkalasku Jyväskylän seminaarimatkasta. Voin syöttää matkalaskujärjestelmään suoraan sähköiset kuitit sen sijaan, että säästäisin paperikuitit, kopioisin niiden tiedot käsin matkalaskuohjelmaan ja lähettäisin alkuperäiset skannattaviksi kirjanpitoon.</q>
 	  <q>Hienoa, kun voin ilmoittaa kylpyhuoneremontin tiedot kotitalousvähennystä varten verottajalle lähettämällä sähköisen kuitin veroehdotusta tarkastaessani.</q>
@@ -237,23 +237,18 @@
 </table>
 </div>
 </section>
-   <section class="step top center" data-x="0" data-y="-1000">
-<h1>Tehokkaampi kanta-asiakkuus</h1>
-<div>
-<p>Asiakkaat voisivat nykyistä paremmin nähdä ostosten keskittämisestä saamansa edut
-<q>Mitkä tuotteet ovat maksaneet lähikaupassa enemmän kuin supermarketissa? Kuinka
-paljon?</q>
-<q>Kuinka paljon voisin säästää vuoden aikana keskittämällä ostoksiani vielä enemmän
-tietyn kanta-asiakasohjelman liikkeisiin? Miten vakuutusyhtiön vaihto vaikuttaisi
-bonuksiini?</q>
-</p>
-<p>Kauppaketju voisi tarjota merkittäviä alennuksia niille asiakkaille, jotka luovuttaisivat tietoja omasta todellisesta ostoskäyttäytymisestään.
-</p>
-</div>
+<section class="step top center" data-x="0" data-y="-1000">
+ <h1>Tehokkaampi kanta-asiakkuus</h1>
+ <div>
+  <p>Asiakkaat voisivat nykyistä paremmin nähdä ostosten keskittämisestä saamansa edut
+   <q>Mitkä tuotteet ovat maksaneet lähikaupassa enemmän kuin supermarketissa? Kuinka paljon?</q>
+   <q>Kuinka paljon voisin säästää vuoden aikana keskittämällä ostoksiani vielä enemmän tietyn kanta-asiakasohjelman liikkeisiin? Miten vakuutusyhtiön vaihto vaikuttaisi bonuksiini?</q>
+  </p>
+  <p>Omia tietoja voisi luovuttaa yksityiskohtaisesti tai summattuina esimerkiksi tutkimuksiin tai niitä voitaisiin hyödyntää erilaisissa laskureissa ja muissa sovelluksissa. Kauppaketju voisi tarjota merkittäviä alennuksia niille asiakkaille, jotka luovuttaisivat tietoja omasta todellisesta ostoskäyttäytymisestään.</p>
+ </div>
 </section>
 <section class="step bottom right" data-x="0" data-y="0">
-<p></p>
-<div class="demo" id="edut">
+ <div class="demo" id="edut">
 <table>
 <caption>Bonukset, tarjoukset ja alennukset</caption>
 <thead><tr><th>Ryhmä</th><th>Ostokerrat</th><th>Ostot</th><th>Alennukset</th><th>Muuta</th></tr></thead>
@@ -271,38 +266,29 @@ bonuksiini?</q>
 <tr><td>K-plussa</td><td>Saat 25 % alennusta yhdestä ostoskerrasta K-ryhmän kaupassa, jos luovutat tiedot viimeisimmän kuukauden vähittäiskauppaostoksistasi.</td><td><form method="get" action="#" onsubmit="return false;"><input type="hidden" name="sovellus" value="K-plussa" /><input type="hidden" name="tiedot" value="Rajattujen luokkien tiedot"><input type="submit" value="Hyväksy" class="approve" onclick="return annaLupa(this.form);" /><input type="submit" value="Hylkää" class="decline" onclick="return poistaPyynto(this.form);" /></form></td></tr>
 </tbody>
 </table>
-
 <table id="luvat">
 <caption>Sovellukset, jotka saavat käyttää tietojasi</caption>
 <thead><tr><th>Sovellus</th><th>Annettu</th><th>Voimassa</th><th>Tiedot</th><th>Muuta</th></tr></thead>
 <tbody>
+<tr><td>Tilastokeskuksen kulutustutkimus</td><td>1.12.2013</td><td>31.12.2013</td><td>summatiedot luokittain</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
 <tr><td>kulutus.seuranta.org</td><td>1.11.2013</td><td>toistaiseksi</td><td>Kaikki tiedot</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
 <tr><td>bonusvertailu.fi</td><td>1.6.2013</td><td>toistaiseksi</td><td>Kaikki tiedot</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
-<tr><td>Tilastokeskuksen kulutustutkimus</td><td>1.12.2013</td><td>31.12.2013</td><td>summatiedot luokittain</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
+<tr><td>eettinenlaskuri.fi</td><td>1.3.2013</td><td>31.12.2013</td><td>Kaikki tiedot</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
 <tr class="expired"><td>Kuluttajatutkimuskeskus</td><td>1.1.2013</td><td>28.2.2013</td><td>summatiedot luokittain</td><td class="change"><input type="submit" value="Uusi lupa" class="approve" onclick="toggleLupa(this);" /></td></tr>
 </tbody>
 </table>
-
-</div>
+ </div>
 </section>
-
 <section class="step top right" data-x="1500" data-y="-1000">
-<h1>Oman kulutuksen vertailu muihin</h1>
-<p>Sähköisten kuittitietojen avulla omasta kulutuksesta saisi hyvin tarkan kuvan. Jo 
-nyt monet oman talouden seurannan sovellukset antavat mahdollisuuden seurata tulojen
-ja menojen kehitystä. Pelkän pankkitilin saldon avulla voi päätellä, onko tässä
-kuussa kulunut enemmän rahaa kuin viime kuussa.</p>
-<p>Olemassa olevat palvelut eivät
-kuitenkaan vastaa oleellisiin kysymyksiin:
-<q>Mihin tuotteisiin ja palveluihin kulutan enemmän rahaa kuin muut?</q> tai
-<q>Kuinka paljon yksityisautoilu maksaa minulle vuodessa?</q></p>
-<p> Jos
-ostoksista saisi tuotekohtaiset tiedot, omaa kulutusta voisi verrata tilastoista ja
-tutkimuksista löytyviin keskiarvoihin tai suosituksiin.</p>
+ <h1>Oman kulutuksen vertailu muihin</h1>
+ <p>Sähköisten kuittitietojen avulla omasta kulutuksesta saisi hyvin tarkan kuvan. Jo nyt monet oman talouden seurannan sovellukset antavat mahdollisuuden seurata tulojen ja menojen kehitystä. Pelkän pankkitilin saldon avulla voi päätellä, onko tässä kuussa kulunut enemmän rahaa kuin viime kuussa.</p>
+ <p>Olemassa olevat palvelut eivät kuitenkaan vastaa oleellisiin kysymyksiin:
+  <q>Mihin tuotteisiin ja palveluihin kulutan enemmän rahaa kuin muut?</q> tai
+  <q>Kuinka paljon yksityisautoilu maksaa minulle vuodessa?</q></p>
+ <p>Jos ostoksista saisi tuotekohtaiset tiedot, omaa kulutusta voisi verrata tilastoista ja tutkimuksista löytyviin keskiarvoihin tai suosituksiin.</p>
 </section>
 <section class="step bottom right" data-x="1500" data-y="0">
-
-<div class="demo">
+ <div class="demo">
    <form method="get" action="./">
     <fieldset id="bmtarget">
      <label for="bmto">Vertaa</label>
@@ -1090,21 +1076,6 @@ tutkimuksista löytyviin keskiarvoihin tai suosituksiin.</p>
 </div>
 </section>
 
-<section>
-<h1></h1>
-</section>
-
-<section>
-<h1></h1>
-</section>
-
-<section>
-<h1></h1>
-</section>
-
-<section>
-<h1></h1>
-</section>
 </div>
  <script>
   var currentTable = 'table121';
