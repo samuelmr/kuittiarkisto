@@ -1,0 +1,1203 @@
+﻿<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1024" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Kuitit datana</title>
+  <link href="http://fonts.googleapis.com/css?family=Karla:400,700,400italic" rel="stylesheet" type="text/css" />
+  <style>
+ body {
+  background: radial-gradient(#FFF, #9CF);
+  font-family: 'Karla', sans-serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 3em;
+ }
+ h1 {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+ }
+ h1.step {
+  color: #FFF;
+  font-size: 4em;
+  height: 640px;
+  text-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+  width: 800px;
+ }
+ section h1 {
+  text-align: left;
+ }
+ .step {
+/*
+  border: 1px solid red;
+*/
+ }
+ section.step {
+  background-color: #FFF;
+  border-radius: 1em;
+  height: 640px;
+  padding: 50px;
+  width: 900px;
+ }
+ .step.top.left {
+  box-shadow: -20px 4px 10px rgba(0, 0, 0, 0.3);
+ }
+ .step.top.center {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+ }
+ .step.top.right {
+  box-shadow: 20px 4px 10px rgba(0, 0, 0, 0.3);
+ }
+ .step.bottom.left {
+  box-shadow: -20px 20px 10px rgba(0, 0, 0, 0.4);
+ }
+ .step.bottom.center {
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.4);
+ }
+ .step.bottom.right {
+  box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.4);
+ }
+ .demo {
+  background-color: #FFF;
+  border: 3em solid black;
+  border-radius: 2em;
+  display: block;
+  font-size: 66%;
+  height: 500px;
+  overflow: auto;
+  padding: 0;
+  position: relative;
+  margin: 1em 0;
+  width: 800px;
+ }
+ fieldset {
+  font-size: 0.75em;
+  line-height: 1;
+  margin: 2em auto 0 auto;
+  max-width: 55em;
+ }
+ #kuittiarkisto table, #edut table {
+  border-collapse: collapse;
+  margin: 1em auto;
+  width: 90%;
+ }
+ #kuittiarkisto td, #edut td {
+  line-height: 1;
+  margin: 0;
+  padding: 0 0.5em;
+ }
+ #kuittiarkisto td {
+  cursor: pointer;
+  text-decoration: underline;
+ }
+ .kuitti {
+  display: none;
+ }
+ #kuittiarkisto .kuitti table {
+  background-color: #FFF;
+  border: 2px solid #000;
+  bottom: 20%;
+  left: 10%;
+  position: absolute;
+  right: 10%;
+  top: 20%;
+  width: auto !important;
+ }
+ #kuittiarkisto .kuitti td {
+  text-decoration: none;
+ }
+ td.money, td.quant {
+  text-align: right;
+ }
+ tr.expired td {
+  text-decoration: line-through;
+ }
+ tr.expired td.change {
+  text-decoration: none;
+ }
+ .kuitti table caption, #edut caption {
+  background-color: #666;
+  color: #FFF;
+  font-weight: 700;
+  line-height: 1;
+ }
+ .kuitti a {
+  color: #FFF;
+ }
+ input.approve {
+  background-color: #CFC;
+ }
+ input.decline {
+  background-color: #FCC;
+ }
+ table.benchmark {
+  border-collapse: collapse;
+  display: none;
+  margin: 1em auto;	
+ }
+ #table121 {
+  display: table;
+ }
+ table.benchmark th {
+  background-color: #CCC;
+  padding: 0 0.5em;
+  text-align: left;
+ }
+ table.benchmark td {
+  line-height: 1;	
+  text-align: right;
+ }
+ table.benchmark td, table.benchmark th {
+  border-color: #CCC;
+  border-style: solid;
+  border-width: 2px;
+ }
+ table.benchmark tr:hover td, table.benchmark tr:hover th {
+  background-color: #FFC;
+  border-style: outset;
+ }
+ td.plus {
+  background-color: #FCC;
+ }
+ td.minus {
+  background-color: #CFC;
+ }
+ p {
+  margin: 0;
+  max-width: 50em;
+ }
+ p+p {
+  /* text-indent: 2em; */
+  margin-top: 1.5em;
+ }
+ q {
+  display: block;
+  font-style: italic;
+  margin: 1.5em 2em;
+ }
+  </style>
+ </head>
+ <body class="impress-not-supported">
+  <div id="impress">
+   <h1 class="step" data-x="0" data-y="-800" data-scale="4">Kuitit datana</h1>
+   <section class="step top left" data-x="-1500" data-y="-1000">
+    <h1>Kuitit aina tallessa</h1>
+    <div>
+     <p>Sähköiset kuitit voisi tallentaa kuittiarkistoon, josta niiden tietoja voisi hakea.
+      <q>Saappaat ovatkin liian pienet Jani-Petterille. Olikohan niillä palautusoikeutta?</q>
+      <q>Onko digikameran takuu vielä voimassa? Mihin pitikään olla yhteydessä
+      vikatilanteessa?</q></p>
+	 <p>Sähköisiä kuittitietoja olisi helppo käyttää sähköisissä asiointiprosesseissa.
+      <q>Pitäisi tehdä matkalasku Jyväskylän seminaarimatkasta. Voin syöttää matkalaskujärjestelmään suoraan sähköiset kuitit sen sijaan, että säästäisin paperikuitit, kopioisin niiden tiedot käsin matkalaskuohjelmaan ja lähettäisin alkuperäiset skannattaviksi kirjanpitoon.</q>
+	  <q>Hienoa, kun voin ilmoittaa kylpyhuoneremontin tiedot kotitalousvähennystä varten verottajalle lähettämällä sähköisen kuitin veroehdotusta tarkastaessani.</q>
+     </p>
+    </div>
+   </section>
+<section class="step bottom right" data-x="-1500" data-y="0">
+<p></p>
+<div class="demo" id="kuittiarkisto">
+<form action="#" method="get" onsubmit="kuittihaku();">
+<fieldset>
+ <label for="haku">Hae kuittiarkistosta: </label>
+ <input type="search" id="haku" value="Kamera" onkeyup="kuittihaku();" />
+ <input type="submit" value="Hae" />
+</fieldset>
+</form>
+<table id="arkisto">
+<caption>Kuittiarkisto</caption>
+<thead><tr><th>Pvm</th><th>Myyjä</th><th>Tuotteita</th><th>Summa</th></tr></thead>
+<tbody>
+<tr onclick="naytaKuitti(this);"><td>3.11.2013</td><td>Verkkokauppa.com</td><td class="quant">2</td><td class="money">700,80</td><td class="kuitti"><table><caption>3.11.2013 Verkkokauppa.com 700,80 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Samsung NX300 + 18-55/3,5-5,6 OIS White -digikamera</td><td>Audiovisuaaliset sekä valokuvaus- ja tietojenkäsittelylaitteet</td><td class="money">699,90</td><td class="quant">1</td><td class="money">699,90</td><td>Takuu voimassa 3.11.2016 asti.</td></tr><tr><td>Toimituskulut</td><td>Posti- ja telekopiopalvelut</td><td class="money">0,90</td><td class="quant">1</td><td class="money">0,90</td><td></td></tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>1.11.2013</td><td>Citymarket Sello</td><td class="quant">3</td><td class="money">21,90</td><td class="kuitti"><table><caption>1.11.2013 Citymarket Sello 21,90 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Nokia kumisaappaat, lasten</td><td>Jalkineet</td><td class="money">19,95</td><td class="quant">1</td><td class="money">19,95</td><td>Ale 50 %, ei vaihto- ja palautusoikeutta.</tr><tr><td>Vichy Novelle</td><td>Alkoholittomat juomat</td><td class="money">1,75</td><td class="quant">1</td><td class="money">1,75</td><td></td></tr><tr><td>pullopantti</td><td>Alkoholittomat juomat</td><td class="money">0,20</td><td class="quant">1</td><td class="money">0,20</td><td></td></tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>29.10.2013</td><td>Clas Åhlson</td><td class="quant">4</td><td class="money">44,70</td><td class="kuitti"><table><caption>29.10.2013 Clas Åhlson 44,70 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Led-lamppu GU-10 8 W himmennettävä</td><td>Kodin ja puutarhan työkalut ja laitteet</td><td class="money">14,90</td><td class="quant">4</td><td class="money">44,70</td><td>Osta 4 maksa 3. Takuu 5 v. Vaihto- ja palautusoikeus 29.1.2014 asti.</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+<tr onclick="naytaKuitti(this);"><td>28.10.2013</td><td>Lorem Ipsum</td><td class="quant">1</td><td class="money">1,00</td><td class="kuitti"><table><caption>28.10.2013 Lorem Ipsum 1,00 <a href="#">Lataa XML</a></caption><tr><th>Tuote</th><th>Kategoria</th><th>Hinta</th><th>Kpl</th><th>Summa</th><th>Muuta</th></tr><tr><td>Duis condimentum sem interdum vel </td><td>Henkilökohtaiset esineet, muualla luokittelemattomat</td><td class="money">1,00</td><td class="quant">1</td><td class="money">1,00</td><td>wisi elementum sit tempus varius vestibulum</tr></table></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+   <section class="step top center" data-x="0" data-y="-1000">
+<h1>Tehokkaampi kanta-asiakkuus</h1>
+<div>
+<p>Asiakkaat voisivat nykyistä paremmin nähdä ostosten keskittämisestä saamansa edut
+<q>Mitkä tuotteet ovat maksaneet lähikaupassa enemmän kuin supermarketissa? Kuinka
+paljon?</q>
+<q>Kuinka paljon voisin säästää vuoden aikana keskittämällä ostoksiani vielä enemmän
+tietyn kanta-asiakasohjelman liikkeisiin? Miten vakuutusyhtiön vaihto vaikuttaisi
+bonuksiini?</q>
+</p>
+<p>Kauppaketju voisi tarjota merkittäviä alennuksia niille asiakkaille, jotka luovuttaisivat tietoja omasta todellisesta ostoskäyttäytymisestään.
+</p>
+</div>
+</section>
+<section class="step bottom right" data-x="0" data-y="0">
+<p></p>
+<div class="demo" id="edut">
+<table>
+<caption>Bonukset, tarjoukset ja alennukset</caption>
+<thead><tr><th>Ryhmä</th><th>Ostokerrat</th><th>Ostot</th><th>Alennukset</th><th>Muuta</th></tr></thead>
+<tbody>
+<tr><td>K-plussa</td><td class="quant">8</td><td class="money">377,33</td><td class="money">56,04</td><td>Vielä 122,67 &euro; ostoista 1000 lisäpistettä (5 &euro;).</td></tr>
+<tr><td>S-ryhmä</td><td class="quant">4</td><td class="money">123,96</td><td class="money">8,04</td><td>Vielä 76,04 &euro; ostoista bonus 1 %:sta 1,5 %:iin (1 &euro;)</td></tr>
+<tr><td>Ykkösbonus</td><td class="quant">1</td><td class="money">2,90</td><td class="money">0,00</td><td></td></tr>
+</tbody>
+</table>
+<table>
+<caption>Uudet tietopyynnöt</caption>
+<thead><tr><th>Pyytäjä</th><th>Pyyntö ja edut</th><th>Hyväksyntä</th></tr></thead>
+<tbody>
+<tr><td>S-kanava.fi</td><td>Saat 1 euron alennuksen seuraavasta tankkauksestasi ABC-asemalla, jos luovutat tiedot kaikista tämän vuoden tankkaustapahtumistasi.</td><td><form method="get" action="#" onsubmit="return false;"><input type="hidden" name="sovellus" value="S-kanava" /><input type="hidden" name="tiedot" value="Yksityisajoneuvojen käyttö"><input type="submit" value="Hyväksy" class="approve" onclick="return annaLupa(this.form);" /><input type="submit" value="Hylkää" class="decline" onclick="return poistaPyynto(this.form);" /></form></td></tr>
+<tr><td>K-plussa</td><td>Saat 25 % alennusta yhdestä ostoskerrasta K-ryhmän kaupassa, jos luovutat tiedot viimeisimmän kuukauden vähittäiskauppaostoksistasi.</td><td><form method="get" action="#" onsubmit="return false;"><input type="hidden" name="sovellus" value="K-plussa" /><input type="hidden" name="tiedot" value="Rajattujen luokkien tiedot"><input type="submit" value="Hyväksy" class="approve" onclick="return annaLupa(this.form);" /><input type="submit" value="Hylkää" class="decline" onclick="return poistaPyynto(this.form);" /></form></td></tr>
+</tbody>
+</table>
+
+<table id="luvat">
+<caption>Sovellukset, jotka saavat käyttää tietojasi</caption>
+<thead><tr><th>Sovellus</th><th>Annettu</th><th>Voimassa</th><th>Tiedot</th><th>Muuta</th></tr></thead>
+<tbody>
+<tr><td>kulutus.seuranta.org</td><td>1.11.2013</td><td>toistaiseksi</td><td>Kaikki tiedot</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
+<tr><td>bonusvertailu.fi</td><td>1.6.2013</td><td>toistaiseksi</td><td>Kaikki tiedot</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
+<tr><td>Tilastokeskuksen kulutustutkimus</td><td>1.12.2013</td><td>31.12.2013</td><td>summatiedot luokittain</td><td class="change"><input type="submit" value="Peru lupa" class="decline" onclick="toggleLupa(this);" /></td></tr>
+<tr class="expired"><td>Kuluttajatutkimuskeskus</td><td>1.1.2013</td><td>28.2.2013</td><td>summatiedot luokittain</td><td class="change"><input type="submit" value="Uusi lupa" class="approve" onclick="toggleLupa(this);" /></td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<section class="step top right" data-x="1500" data-y="-1000">
+<h1>Oman kulutuksen vertailu muihin</h1>
+<p>Sähköisten kuittitietojen avulla omasta kulutuksesta saisi hyvin tarkan kuvan. Jo 
+nyt monet oman talouden seurannan sovellukset antavat mahdollisuuden seurata tulojen
+ja menojen kehitystä. Pelkän pankkitilin saldon avulla voi päätellä, onko tässä
+kuussa kulunut enemmän rahaa kuin viime kuussa.</p>
+<p>Olemassa olevat palvelut eivät
+kuitenkaan vastaa oleellisiin kysymyksiin:
+<q>Mihin tuotteisiin ja palveluihin kulutan enemmän rahaa kuin muut?</q> tai
+<q>Kuinka paljon yksityisautoilu maksaa minulle vuodessa?</q></p>
+<p> Jos
+ostoksista saisi tuotekohtaiset tiedot, omaa kulutusta voisi verrata tilastoista ja
+tutkimuksista löytyviin keskiarvoihin tai suosituksiin.</p>
+</section>
+<section class="step bottom right" data-x="1500" data-y="0">
+
+<div class="demo">
+   <form method="get" action="./">
+    <fieldset id="bmtarget">
+     <label for="bmto">Vertaa</label>
+     <select name="bmto" id="bmto" onchange="setBMTable(this[this.selectedIndex].value)">
+      <option value="121" selected="selected">Kaikki kotitaloudet - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="122">Yhden hengen talous, alle 65 v - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="123">Lapseton pari, alle 65 v - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="124">Yksinhuoltajatalous - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="125">Kahden huoltajan lapsiperhe - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="126">Vanhustalous - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="127">Muut kotitaloudet - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</option>
+      <option value="154">Helsingissä yksin asuva alle 45-vuotias nainen - minimibudjetti</option>
+      <option value="155">Helsingissä yksin asuva alle 45-vuotias mies - minimibudjetti</option>
+      <option value="156">Helsingissä yksin asuva yli 65-vuotias nainen - minimibudjetti</option>
+      <option value="157">Helsingissä yksin asuva yli 65-vuotias mies - minimibudjetti</option>
+      <option value="158">Helsingissä asuva lapseton pariskunta - minimibudjetti</option>
+      <option value="159">Helsingissä asuva lapsiperhe - minimibudjetti</option>
+      <option value="160">Pääkaupunkiseudulla yksin asuva alle 45-vuotias nainen - minimibudjetti</option>
+      <option value="161">Pääkaupunkiseudulla yksin asuva alle 45-vuotias mies - minimibudjetti</option>
+      <option value="162">Pääkaupunkiseudulla yksin asuva yli 65-vuotias nainen - minimibudjetti</option>
+      <option value="163">Pääkaupunkiseudulla yksin asuva yli 65-vuotias mies - minimibudjetti</option>
+      <option value="164">Pääkaupunkiseudulla asuva lapseton pariskunta - minimibudjetti</option>
+      <option value="165">Pääkaupunkiseudulla asuva lapsiperhe - minimibudjetti</option>
+      <option value="166">yli 100 000 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</option>
+      <option value="167">yli 100 000 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</option>
+      <option value="168">yli 100 000 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</option>
+      <option value="169">yli 100 000 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</option>
+      <option value="170">yli 100 000 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</option>
+      <option value="171">yli 100 000 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</option>
+      <option value="172">60 000 - 99 999 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</option>
+      <option value="173">60 000 - 99 999 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</option>
+      <option value="174">60 000 - 99 999 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</option>
+      <option value="175">60 000 - 99 999 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</option>
+      <option value="176">60 000 - 99 999 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</option>
+      <option value="177">60 000 - 99 999 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</option>
+      <option value="178">20 000 - 59 999 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</option>
+      <option value="179">20 000 - 59 999 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</option>
+      <option value="180">20 000 - 59 999 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</option>
+      <option value="181">20 000 - 59 999 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</option>
+      <option value="182">20 000 - 59 999 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</option>
+      <option value="183">20 000 - 59 999 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</option>
+      <option value="184">alle 20 000 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</option>
+      <option value="185">alle 20 000 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</option>
+      <option value="186">alle 20 000 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</option>
+      <option value="187">alle 20 000 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</option>
+      <option value="188">alle 20 000 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</option>
+      <option value="189">alle 20 000 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</option>
+     </select>
+     <input type="submit" value="Näytä" />
+    </fieldset>
+   </form>
+
+  <table class="benchmark" id="table121">
+   <caption>Kaikki kotitaloudet - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>405.36</td><td class="plus">35.42</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>80.48</td><td class="minus">-19.25</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>99.25</td><td class="plus">7.04</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>785.89</td><td class="minus">-84.62</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>142.35</td><td class="minus">-116.09</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>98.18</td><td class="minus">-72.82</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>429.61</td><td class="plus">144.78</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>59.50</td><td class="minus">-57.38</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>291.27</td><td class="plus">444.33</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>6.61</td><td class="minus">-6.61</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>133.30</td><td class="plus">74.93</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>370.85</td><td class="plus">440.56</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>2902,65</td><td class="plus">790,29</td></tr>
+  </table>
+  <table class="benchmark" id="table122">
+   <caption>Yhden hengen talous, alle 65 v - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>217.81</td><td class="plus">222.97</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>69.14</td><td class="minus">-7.91</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.02</td><td class="plus">58.27</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>547.73</td><td class="plus">153.54</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>68.61</td><td class="minus">-42.35</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>51.66</td><td class="minus">-26.30</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>276.02</td><td class="plus">298.37</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>41.30</td><td class="minus">-39.18</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>185.93</td><td class="plus">549.67</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>4.55</td><td class="minus">-4.55</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>120.28</td><td class="plus">87.95</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>226.13</td><td class="plus">585.28</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1857,18</td><td class="plus">1835,76</td></tr>
+  </table>
+  <table class="benchmark" id="table123">
+   <caption>Lapseton pari, alle 65 v - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>456.76</td><td class="minus">-15.98</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>120.44</td><td class="minus">-59.21</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>128.71</td><td class="minus">-22.42</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>874.16</td><td class="minus">-172.89</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>202.81</td><td class="minus">-176.55</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>99.61</td><td class="minus">-74.25</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>571.66</td><td class="plus">2.73</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>64.85</td><td class="minus">-62.73</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>352.40</td><td class="plus">383.20</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>8.80</td><td class="minus">-8.80</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>194.67</td><td class="plus">13.56</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>465.22</td><td class="plus">346.19</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3540,08</td><td class="plus">152,86</td></tr>
+  </table>
+  <table class="benchmark" id="table124">
+   <caption>Yksinhuoltajatalous - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>410.98</td><td class="plus">29.80</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>74.22</td><td class="minus">-12.99</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.09</td><td class="plus">16.20</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>815.37</td><td class="minus">-114.10</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>114.48</td><td class="minus">-88.22</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>59.26</td><td class="minus">-33.90</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>277.02</td><td class="plus">297.37</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>73.91</td><td class="minus">-71.79</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>242.98</td><td class="plus">492.62</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>9.44</td><td class="minus">-9.44</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>124.54</td><td class="plus">83.69</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>298.11</td><td class="plus">513.30</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>2590,40</td><td class="plus">1102,54</td></tr>
+  </table>
+  <table class="benchmark" id="table125">
+   <caption>Kahden huoltajan lapsiperhe - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>642.50</td><td class="minus">-201.72</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>102.80</td><td class="minus">-41.57</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>202.21</td><td class="minus">-95.92</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1043.20</td><td class="minus">-341.93</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>244.83</td><td class="minus">-218.57</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>117.33</td><td class="minus">-91.97</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>735.08</td><td class="minus">-160.69</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>93.37</td><td class="minus">-91.25</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>491.03</td><td class="plus">244.57</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>10.27</td><td class="minus">-10.27</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>207.01</td><td class="plus">1.22</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>657.42</td><td class="plus">153.99</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>4547,04</td><td class="minus">-854,10</td></tr>
+  </table>
+  <table class="benchmark" id="table126">
+   <caption>Vanhustalous - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>285.68</td><td class="plus">155.10</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>27.82</td><td class="plus">33.41</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>34.05</td><td class="plus">72.24</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>665.79</td><td class="plus">35.48</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>76.44</td><td class="minus">-50.18</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>125.37</td><td class="minus">-100.01</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>145.92</td><td class="plus">428.47</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>33.07</td><td class="minus">-30.95</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>150.48</td><td class="plus">585.12</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>1.17</td><td class="minus">-1.17</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>24.96</td><td class="plus">183.27</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>168.02</td><td class="plus">643.39</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1738,75</td><td class="plus">1954,19</td></tr>
+  </table>
+  <table class="benchmark" id="table127">
+   <caption>Muut kotitaloudet - kuluttajahintaindeksillä korjattu kulutus (Tilastokeskus)</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>556.17</td><td class="minus">-115.39</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>99.26</td><td class="minus">-38.03</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.78</td><td class="plus">15.51</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>939.64</td><td class="minus">-238.37</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>141.55</td><td class="minus">-115.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>142.43</td><td class="minus">-117.07</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>583.01</td><td class="minus">-8.62</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>77.40</td><td class="minus">-75.28</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>337.54</td><td class="plus">398.06</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>11.59</td><td class="minus">-11.59</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>114.82</td><td class="plus">93.41</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>403.75</td><td class="plus">407.66</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3497,95</td><td class="plus">194,99</td></tr>
+  </table>
+  <table class="benchmark" id="table154">
+   <caption>Helsingissä yksin asuva alle 45-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.16</td><td class="plus">58.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>759.27</td><td class="minus">-58.00</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>53.54</td><td class="plus">520.85</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1411,52</td><td class="plus">2281,42</td></tr>
+  </table>
+  <table class="benchmark" id="table155">
+   <caption>Helsingissä yksin asuva alle 45-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>40.99</td><td class="plus">65.30</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>759.27</td><td class="minus">-58.00</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>53.54</td><td class="plus">520.85</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1404,35</td><td class="plus">2288,59</td></tr>
+  </table>
+  <table class="benchmark" id="table156">
+   <caption>Helsingissä yksin asuva yli 65-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>33.81</td><td class="plus">72.48</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>924.06</td><td class="minus">-222.79</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>53.54</td><td class="plus">520.85</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1478,32</td><td class="plus">2214,62</td></tr>
+  </table>
+  <table class="benchmark" id="table157">
+   <caption>Helsingissä yksin asuva yli 65-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>29.71</td><td class="plus">76.58</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>924.06</td><td class="minus">-222.79</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>53.54</td><td class="plus">520.85</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1474,22</td><td class="plus">2218,72</td></tr>
+  </table>
+  <table class="benchmark" id="table158">
+   <caption>Helsingissä asuva lapseton pariskunta - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>451.82</td><td class="minus">-11.04</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.17</td><td class="plus">16.12</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1260.43</td><td class="minus">-559.16</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>46.55</td><td class="minus">-20.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>33.88</td><td class="minus">-8.52</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>102.52</td><td class="plus">471.87</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>87.35</td><td class="minus">-85.23</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>57.58</td><td class="plus">678.02</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>130.91</td><td class="plus">77.32</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>100.53</td><td class="plus">710.88</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>2361,73</td><td class="plus">1331,21</td></tr>
+  </table>
+  <table class="benchmark" id="table159">
+   <caption>Helsingissä asuva lapsiperhe - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>596.44</td><td class="minus">-155.66</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>225.42</td><td class="minus">-119.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1555.03</td><td class="minus">-853.76</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>67.97</td><td class="minus">-41.71</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>42.16</td><td class="minus">-16.80</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>696.97</td><td class="minus">-122.58</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>97.90</td><td class="minus">-95.78</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>73.45</td><td class="plus">662.15</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>319.36</td><td class="minus">-111.13</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>206.05</td><td class="plus">605.36</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3880,76</td><td class="minus">-187,82</td></tr>
+  </table>
+  <table class="benchmark" id="table160">
+   <caption>Pääkaupunkiseudulla yksin asuva alle 45-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.16</td><td class="plus">58.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>718.63</td><td class="minus">-17.36</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>103.74</td><td class="plus">470.65</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1421,09</td><td class="plus">2271,85</td></tr>
+  </table>
+  <table class="benchmark" id="table161">
+   <caption>Pääkaupunkiseudulla yksin asuva alle 45-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>40.99</td><td class="plus">65.30</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>718.63</td><td class="minus">-17.36</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>103.74</td><td class="plus">470.65</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1413,92</td><td class="plus">2279,02</td></tr>
+  </table>
+  <table class="benchmark" id="table162">
+   <caption>Pääkaupunkiseudulla yksin asuva yli 65-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>33.81</td><td class="plus">72.48</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>874.40</td><td class="minus">-173.13</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>103.74</td><td class="plus">470.65</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1478,86</td><td class="plus">2214,08</td></tr>
+  </table>
+  <table class="benchmark" id="table163">
+   <caption>Pääkaupunkiseudulla yksin asuva yli 65-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>29.71</td><td class="plus">76.58</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>874.40</td><td class="minus">-173.13</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>103.74</td><td class="plus">470.65</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1474,76</td><td class="plus">2218,18</td></tr>
+  </table>
+  <table class="benchmark" id="table164">
+   <caption>Pääkaupunkiseudulla asuva lapseton pariskunta - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>451.82</td><td class="minus">-11.04</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.17</td><td class="plus">16.12</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1192.70</td><td class="minus">-491.43</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>46.55</td><td class="minus">-20.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>33.88</td><td class="minus">-8.52</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>202.93</td><td class="plus">371.46</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>87.35</td><td class="minus">-85.23</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>57.58</td><td class="plus">678.02</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>130.91</td><td class="plus">77.32</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>100.53</td><td class="plus">710.88</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>2394,41</td><td class="plus">1298,53</td></tr>
+  </table>
+  <table class="benchmark" id="table165">
+   <caption>Pääkaupunkiseudulla asuva lapsiperhe - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>596.44</td><td class="minus">-155.66</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>225.42</td><td class="minus">-119.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1471.50</td><td class="minus">-770.23</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>67.97</td><td class="minus">-41.71</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>42.16</td><td class="minus">-16.80</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>773.36</td><td class="minus">-198.97</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>97.90</td><td class="minus">-95.78</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>73.45</td><td class="plus">662.15</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>319.36</td><td class="minus">-111.13</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>206.05</td><td class="plus">605.36</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3873,63</td><td class="minus">-180,69</td></tr>
+  </table>
+  <table class="benchmark" id="table166">
+   <caption>yli 100 000 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.16</td><td class="plus">58.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>644.14</td><td class="plus">57.13</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1325,86</td><td class="plus">2367,08</td></tr>
+  </table>
+  <table class="benchmark" id="table167">
+   <caption>yli 100 000 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>40.99</td><td class="plus">65.30</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>644.14</td><td class="plus">57.13</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1318,69</td><td class="plus">2374,25</td></tr>
+  </table>
+  <table class="benchmark" id="table168">
+   <caption>yli 100 000 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>33.81</td><td class="plus">72.48</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>781.84</td><td class="minus">-80.57</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1365,57</td><td class="plus">2327,37</td></tr>
+  </table>
+  <table class="benchmark" id="table169">
+   <caption>yli 100 000 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>29.71</td><td class="plus">76.58</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>781.84</td><td class="minus">-80.57</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1361,47</td><td class="plus">2331,47</td></tr>
+  </table>
+  <table class="benchmark" id="table170">
+   <caption>yli 100 000 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>451.82</td><td class="minus">-11.04</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.17</td><td class="plus">16.12</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1067.41</td><td class="minus">-366.14</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>46.55</td><td class="minus">-20.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>33.88</td><td class="minus">-8.52</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>161.46</td><td class="plus">412.93</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>87.35</td><td class="minus">-85.23</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>57.58</td><td class="plus">678.02</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>130.91</td><td class="plus">77.32</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>100.53</td><td class="plus">710.88</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>2227,65</td><td class="plus">1465,29</td></tr>
+  </table>
+  <table class="benchmark" id="table171">
+   <caption>yli 100 000 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>596.44</td><td class="minus">-155.66</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>225.42</td><td class="minus">-119.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1318.00</td><td class="minus">-616.73</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>67.97</td><td class="minus">-41.71</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>42.16</td><td class="minus">-16.80</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>770.09</td><td class="minus">-195.70</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>97.90</td><td class="minus">-95.78</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>73.45</td><td class="plus">662.15</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>319.36</td><td class="minus">-111.13</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>206.05</td><td class="plus">605.36</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3716,85</td><td class="minus">-23,91</td></tr>
+  </table>
+  <table class="benchmark" id="table172">
+   <caption>60 000 - 99 999 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.16</td><td class="plus">58.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>492.89</td><td class="plus">208.38</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1174,61</td><td class="plus">2518,33</td></tr>
+  </table>
+  <table class="benchmark" id="table173">
+   <caption>60 000 - 99 999 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>40.99</td><td class="plus">65.30</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>492.89</td><td class="plus">208.38</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1167,44</td><td class="plus">2525,50</td></tr>
+  </table>
+  <table class="benchmark" id="table174">
+   <caption>60 000 - 99 999 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>33.81</td><td class="plus">72.48</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>596.73</td><td class="plus">104.54</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1180,46</td><td class="plus">2512,48</td></tr>
+  </table>
+  <table class="benchmark" id="table175">
+   <caption>60 000 - 99 999 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>29.71</td><td class="plus">76.58</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>596.73</td><td class="plus">104.54</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1176,36</td><td class="plus">2516,58</td></tr>
+  </table>
+  <table class="benchmark" id="table176">
+   <caption>60 000 - 99 999 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>451.82</td><td class="minus">-11.04</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.17</td><td class="plus">16.12</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>814.58</td><td class="minus">-113.31</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>46.55</td><td class="minus">-20.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>33.88</td><td class="minus">-8.52</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>161.46</td><td class="plus">412.93</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>87.35</td><td class="minus">-85.23</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>57.58</td><td class="plus">678.02</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>130.91</td><td class="plus">77.32</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>100.53</td><td class="plus">710.88</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1974,82</td><td class="plus">1718,12</td></tr>
+  </table>
+  <table class="benchmark" id="table177">
+   <caption>60 000 - 99 999 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>596.44</td><td class="minus">-155.66</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>225.42</td><td class="minus">-119.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>1008.72</td><td class="minus">-307.45</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>67.97</td><td class="minus">-41.71</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>42.16</td><td class="minus">-16.80</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>770.09</td><td class="minus">-195.70</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>97.90</td><td class="minus">-95.78</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>73.45</td><td class="plus">662.15</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>319.36</td><td class="minus">-111.13</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>206.05</td><td class="plus">605.36</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3407,58</td><td class="plus">285,36</td></tr>
+  </table>
+  <table class="benchmark" id="table178">
+   <caption>20 000 - 59 999 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.16</td><td class="plus">58.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>462.41</td><td class="plus">238.86</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1144,13</td><td class="plus">2548,81</td></tr>
+  </table>
+  <table class="benchmark" id="table179">
+   <caption>20 000 - 59 999 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>40.99</td><td class="plus">65.30</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>462.41</td><td class="plus">238.86</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1136,96</td><td class="plus">2555,98</td></tr>
+  </table>
+  <table class="benchmark" id="table180">
+   <caption>20 000 - 59 999 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>33.81</td><td class="plus">72.48</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>559.48</td><td class="plus">141.79</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1143,21</td><td class="plus">2549,73</td></tr>
+  </table>
+  <table class="benchmark" id="table181">
+   <caption>20 000 - 59 999 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>29.71</td><td class="plus">76.58</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>559.48</td><td class="plus">141.79</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1139,11</td><td class="plus">2553,83</td></tr>
+  </table>
+  <table class="benchmark" id="table182">
+   <caption>20 000 - 59 999 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>451.82</td><td class="minus">-11.04</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.17</td><td class="plus">16.12</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>763.78</td><td class="minus">-62.51</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>46.55</td><td class="minus">-20.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>33.88</td><td class="minus">-8.52</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>161.46</td><td class="plus">412.93</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>87.35</td><td class="minus">-85.23</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>57.58</td><td class="plus">678.02</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>130.91</td><td class="plus">77.32</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>100.53</td><td class="plus">710.88</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1924,02</td><td class="plus">1768,92</td></tr>
+  </table>
+  <table class="benchmark" id="table183">
+   <caption>20 000 - 59 999 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>596.44</td><td class="minus">-155.66</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>225.42</td><td class="minus">-119.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>946.64</td><td class="minus">-245.37</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>67.97</td><td class="minus">-41.71</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>42.16</td><td class="minus">-16.80</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>770.09</td><td class="minus">-195.70</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>97.90</td><td class="minus">-95.78</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>73.45</td><td class="plus">662.15</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>319.36</td><td class="minus">-111.13</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>206.05</td><td class="plus">605.36</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3345,50</td><td class="plus">347,44</td></tr>
+  </table>
+  <table class="benchmark" id="table184">
+   <caption>alle 20 000 asukkaan kaupungissa yksin asuva alle 45-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>48.16</td><td class="plus">58.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>402.59</td><td class="plus">298.68</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1084,31</td><td class="plus">2608,63</td></tr>
+  </table>
+  <table class="benchmark" id="table185">
+   <caption>alle 20 000 asukkaan kaupungissa yksin asuva alle 45-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>168.17</td><td class="plus">272.61</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>40.99</td><td class="plus">65.30</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>402.59</td><td class="plus">298.68</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>32.95</td><td class="minus">-6.69</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>23.32</td><td class="plus">2.04</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>70.47</td><td class="minus">-68.35</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>36.82</td><td class="plus">698.78</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>150.09</td><td class="plus">58.14</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>68.74</td><td class="plus">742.67</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1077,14</td><td class="plus">2615,80</td></tr>
+  </table>
+  <table class="benchmark" id="table186">
+   <caption>alle 20 000 asukkaan kaupungissa yksin asuva yli 65-vuotias nainen - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>33.81</td><td class="plus">72.48</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>488.37</td><td class="plus">212.90</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1072,10</td><td class="plus">2620,84</td></tr>
+  </table>
+  <table class="benchmark" id="table187">
+   <caption>alle 20 000 asukkaan kaupungissa yksin asuva yli 65-vuotias mies - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>224.23</td><td class="plus">216.55</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>29.71</td><td class="plus">76.58</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>488.37</td><td class="plus">212.90</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>35.15</td><td class="minus">-8.89</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>26.69</td><td class="minus">-1.33</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>83.00</td><td class="plus">491.39</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>72.58</td><td class="minus">-70.46</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>37.66</td><td class="plus">697.94</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>0.00</td><td class="plus">208.23</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>70.60</td><td class="plus">740.81</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1068,00</td><td class="plus">2624,94</td></tr>
+  </table>
+  <table class="benchmark" id="table188">
+   <caption>alle 20 000 asukkaan kaupungissa asuva lapseton pariskunta - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>451.82</td><td class="minus">-11.04</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>90.17</td><td class="plus">16.12</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>665.58</td><td class="plus">35.69</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>46.55</td><td class="minus">-20.29</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>33.88</td><td class="minus">-8.52</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>161.46</td><td class="plus">412.93</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>87.35</td><td class="minus">-85.23</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>57.58</td><td class="plus">678.02</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>130.91</td><td class="plus">77.32</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>100.53</td><td class="plus">710.88</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>1825,82</td><td class="plus">1867,12</td></tr>
+  </table>
+  <table class="benchmark" id="table189">
+   <caption>alle 20 000 asukkaan kaupungissa asuva lapsiperhe - minimibudjetti</caption>
+   <tr><th>Luokka</th><th>Oma kulutus</th><th>Vertailukulutus</th><th>Ero</th></tr>
+   <tr><th class="cat01">Elintarvikkeet ja alkoholittomat juomat</th><td>440.78</td><td>596.44</td><td class="minus">-155.66</td></tr>
+   <tr><th class="cat02">Alkoholijuomat ja tupakka</th><td>61.23</td><td>0.00</td><td class="plus">61.23</td></tr>
+   <tr><th class="cat03">Vaatetus ja jalkineet</th><td>106.29</td><td>225.42</td><td class="minus">-119.13</td></tr>
+   <tr><th class="cat04">Asuminen, vesi ja sähkö</th><td>701.27</td><td>825.87</td><td class="minus">-124.60</td></tr>
+   <tr><th class="cat05">Kalusteet, kotitalouskoneet ja yleinen kodinhoito</th><td>26.26</td><td>67.97</td><td class="minus">-41.71</td></tr>
+   <tr><th class="cat06">Terveys</th><td>25.36</td><td>42.16</td><td class="minus">-16.80</td></tr>
+   <tr><th class="cat07">Liikenne</th><td>574.39</td><td>770.09</td><td class="minus">-195.70</td></tr>
+   <tr><th class="cat08">Viestintä</th><td>2.12</td><td>97.90</td><td class="minus">-95.78</td></tr>
+   <tr><th class="cat09">Kulttuuri ja vapaa-aika</th><td>735.60</td><td>73.45</td><td class="plus">662.15</td></tr>
+   <tr><th class="cat10">Koulutus</th><td>0.00</td><td>0.00</td><td class="even">0.00</td></tr>
+   <tr><th class="cat11">Ravintolat ja hotellit</th><td>208.23</td><td>319.36</td><td class="minus">-111.13</td></tr>
+   <tr><th class="cat12">Muut tavarat ja palvelut</th><td>811.41</td><td>206.05</td><td class="plus">605.36</td></tr>
+   <tr class="total"><th>Yhteensä</th><td>3692,94</td><td>3224,72</td><td class="plus">468,22</td></tr>
+  </table>
+
+</div>
+</section>
+
+<section>
+<h1></h1>
+</section>
+
+<section>
+<h1></h1>
+</section>
+
+<section>
+<h1></h1>
+</section>
+
+<section>
+<h1></h1>
+</section>
+</div>
+ <script>
+  var currentTable = 'table121';
+  function setBMTable(id) {
+    obj = document.getElementById(currentTable);
+    obj.style.display = 'none';
+    currentTable = 'table' + id;
+    obj = document.getElementById(currentTable);
+    obj.style.display = 'table';
+  }
+  function kuittihaku() {
+   var haku = document.getElementById('haku').value.toLowerCase();
+   var taulu = document.getElementById('arkisto');
+   var kuitit = taulu.getElementsByTagName('tr');
+   for (var i in kuitit) {
+    if (!kuitit[i].style || (kuitit[i].parentNode.parentNode.id != taulu.id)) {
+	 continue;
+	}
+    var txt = kuitit[i].innerText || kuitit[i].textContent;
+	if (!haku || (txt && (txt.toLowerCase().indexOf(haku) > 0))) {
+     kuitit[i].style.display = 'table-row';
+	}
+	else {
+	 kuitit[i].style.display = 'none';
+	}
+   }
+  }
+  function naytaKuitti(tr) {
+   var obj = tr.lastChild;
+   currentReceipt = obj;
+   obj.style.display = 'table-cell';
+   tr.onclick = function() { obj.style.display = 'none'; tr.onclick=function() {naytaKuitti(tr)};};
+  }
+  function toggleLupa(button) {
+   var tr;
+   var parent = button.parentNode;
+   while (parent.nodeName.toLowerCase() != 'tr') {
+    parent = parent.parentNode;
+   }
+   if (button.value.indexOf('Uusi') >= 0) {
+    button.value = 'Peru lupa';
+    button.className = 'decline';
+    parent.className = '';
+    parent.getElementsByTagName('td')[2].innerHTML = 'toistaiseksi';
+   }
+   else {
+    button.value = 'Uusi lupa';
+    button.className = 'approve';
+    parent.className = 'expired';
+    parent.getElementsByTagName('td')[2].innerHTML = today();
+   }
+  }
+  function poistaPyynto(form) {
+   var parent = form.parentNode;
+   while (parent.nodeName.toLowerCase() != 'tr') {
+    parent = parent.parentNode;
+   }
+   parent.style.display = 'none';
+   return false;
+  }
+  function annaLupa(form) {
+   var inputs = form.getElementsByTagName('input');
+   var lt = document.getElementById('luvat');
+   var tr = document.createElement('tr');
+   var td = document.createElement('td');
+   var txt = document.createTextNode(form['sovellus'].value);
+   td.appendChild(txt);
+   tr.appendChild(td);
+   td = document.createElement('td');
+   txt = document.createTextNode(today());
+   td.appendChild(txt);
+   tr.appendChild(td);
+   td = document.createElement('td');
+   txt = document.createTextNode('toistaiseksi');
+   td.appendChild(txt);
+   tr.appendChild(td);
+   td = document.createElement('td');
+   txt = document.createTextNode(form['tiedot'].value);
+   td.appendChild(txt);
+   tr.appendChild(td);
+   td = lt.getElementsByTagName('tr')[1].lastChild.cloneNode(true);
+   tr.appendChild(td);
+   lt.appendChild(tr);
+   poistaPyynto(form);
+   return false;
+  }
+  function today() {
+   var d = new Date();
+   return d.getDate() + '.' + (d.getMonth()+1) + '.' + d.getFullYear();
+  }
+ </script>
+ <script src="http://bartaz.github.io/impress.js/js/impress.js"></script>
+ <script>impress().init();</script>
+</body>
+</html>
+
