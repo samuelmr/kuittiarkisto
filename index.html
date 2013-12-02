@@ -1092,16 +1092,17 @@
    var kuitit = taulu.getElementsByTagName('tr');
    for (var i in kuitit) {
     if (!kuitit[i].style || (kuitit[i].parentNode.parentNode.id != taulu.id)) {
-	 continue;
-	}
+     continue;
+    }
     var txt = kuitit[i].innerText || kuitit[i].textContent;
-	if (!haku || (txt && (txt.toLowerCase().indexOf(haku) > 0))) {
+    if (!haku || (txt && (txt.toLowerCase().indexOf(haku) > 0))) {
      kuitit[i].style.display = 'table-row';
-	}
-	else {
-	 kuitit[i].style.display = 'none';
-	}
+    }
+    else {
+     kuitit[i].style.display = 'none';
+    }
    }
+   return false;
   }
   function naytaKuitti(tr) {
    var obj = tr.lastChild;
